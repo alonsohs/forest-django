@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>Categorías</title>
+{% endblock%}
+
+{% block contenido %}
+    <h1 style="color: red;">Estas en el catálogo de CATEGORIAS</h1>
+    <h4>Categorías:</h4>
+    
+    {% if categorias %}
+    <table border='2'>
+        {% for categoria in categorias %}
+        <tr>
+            <td>{{ categorias.id }}</td>
+            <td>{{ categoria.nombre }}</td>
+            <td>{{ categoria.descripcion }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <h3>No hay registros en la tabla de Categorías</h3>
+    {% endif %}
+
+{% endblock%}
