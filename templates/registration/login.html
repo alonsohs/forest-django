@@ -1,0 +1,28 @@
+{% extends "registration/base.html" %}
+{% block contenido %}
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Forest</h1>
+    </div>
+    <form class="user" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user"
+                   id="exampleInputEmail" aria-describedby="emailHelp"
+                   placeholder="Nombre de usuario..." name="username">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-user"
+                   id="exampleInputPassword" placeholder="Contraseña" name="password">
+        </div>
+        <button type="submit" class="btn btn-success btn-user btn-block">
+            Iniciar sesión
+        </button>
+    </form>
+    <hr>
+    <div class="text-center">
+        <a class="small" href="forgot-password.html">¿Olvidaste la contraseña?</a>
+    </div>
+    <div class="text-center">
+        <a class="small" href="register.html">¡Crea una nueva cuenta!</a>
+    </div>
+{% endblock %}
