@@ -13,6 +13,11 @@ def home(request):
     return render(request, 'home.html')
 
 
+def logout(request):
+    logout(request)
+    return redirect('/')
+
+
 
 # CREACION DE LAS FUNCIONES PARA EL CRUD
 
