@@ -1,10 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-# Create your views here.
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView
-
 from .forms import ArbolForm
 from .models import Arbol
 
@@ -48,18 +44,3 @@ def eliminarArbol(request, pk):
     arbol.delete()
     return redirect('arboles')
 
-# class CreateArbol(CreateView):
-#     model = Arbol
-#     form_class = ArbolForm
-#     template_name = "crear_arbol.html"
-#     success_url = reverse_lazy('arboles')
-#
-# class ListArbol(ListView):
-#     model = Arbol
-#     template_name = "listar_producto.html"
-#
-# class UpdateArbol(UpdateView):
-#     model = Arbol
-#     form_class = ArbolForm
-#     template_name = "crear_producto.html"
-#     success_url = reverse_lazy('home')

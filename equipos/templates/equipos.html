@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+
+{% block titulo %}
+    <title>Árboles</title>
+    <style>
+
+        .image-head {
+            width: 6rem;
+        }
+
+        .table-row .table-cell {
+            vertical-align: middle;
+        }
+
+        .table-image {
+            width: 3rem;
+            height: 3rem;
+            margin-left: 1rem;
+        }
+    </style>
+{% endblock%}
+
+{% block contenido %}
+    <div class="d-flex justify-content-between mb-4">
+        <h1 class="h2">Listado de equipos</h1>
+        <a href="{% url 'crear_arbol' %}">
+            <button class="btn-success">Agregar nuevo</button>
+        </a>
+    </div>
+
+    <main>
+        <div class="card p-4">
+
+             <div class="d-flex justify-content-between mb-4">
+                <h1 class="h4 text-success">Alpha</h1>
+                <a href="{% url 'crear_arbol' %}">
+                    <button class="btn-success">Agregar persona</button>
+                </a>
+            </div>
+
+            <div class="table-responsive ">
+            <table class="table table-bordered" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                    <th class="image-head"></th>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                </tr>
+              </thead>
+                <tbody>
+                {% for persona in personas %}
+                <tr class="table-row">
+                    <td class="table-cell"><img src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png" class="rounded-circle table-image" alt=""></td>
+                    <td class="table-cell">{{ persona.nombre }} {{ persona.apellidos }}</td>
+                    <td class="table-cell">{{ persona.rol }}</td>
+                    <td class="table-cell">{{ persona.correo }}</td>
+                    <td class="table-cell">{{ persona.telefono }}</td>
+                    <td class="table-cell">{{ persona.direccion }}</td>
+
+                </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <script>
+            console.log('Set datatable')
+
+            let table = new DataTable('#dataTable', {
+                // options
+            });
+        </script>
+    </main>
+{% endblock%}
