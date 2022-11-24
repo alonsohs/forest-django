@@ -25,4 +25,5 @@ urlpatterns = [
     path('logout/', views.logoutSession, name="logout"),
     path('arboles/', include('arboles.urls')),
     path('equipos/', include('equipos.urls')),
+    path('proyectos/', include('proyectos.urls')),
 ]
