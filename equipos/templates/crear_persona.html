@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>Agregar Miembro</title>
+
+    <style>
+        .text-white {
+            color: white;
+        }
+    </style>
+{% endblock%}
+
+{% block styles %}
+
+{% endblock %}
+
+
+{% block contenido %}
+    <h3 style="color: blue;">Agregar miebro al equipo</h3>
+    <form action="" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+
+        <div>
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button  class="btn-secondary text-white">
+                <a href="{% url 'equipos' %}">Cancelar</a>
+            </button>
+        </div>
+    </form>
+
+{% endblock%}

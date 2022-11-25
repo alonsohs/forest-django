@@ -24,18 +24,18 @@
 {% block contenido %}
     <div class="d-flex justify-content-between mb-4">
         <h1 class="h2">Listado de equipos</h1>
-        <a href="{% url 'crear_arbol' %}">
+        <a href="{% url 'crear_equipo' %}">
             <button class="btn-success">Agregar nuevo</button>
         </a>
     </div>
 
     <main>
      {% for equipo in equipos %}
-        <div class="card p-4">
+        <div class="card p-4 mb-4">
 
              <div class="d-flex justify-content-between mb-4">
                 <h1 class="h4 text-success">{{ equipo.nombre }}</h1>
-                <a href="{% url 'crear_arbol' %}">
+                <a href="{% url 'crear_persona' equipo.id %}">
                     <button class="btn-success">Agregar persona</button>
                 </a>
             </div>
@@ -53,7 +53,7 @@
                 </tr>
               </thead>
                 <tbody>
-                {% for persona in personas %}
+                {% for persona in equipo.personas %}
                 <tr class="table-row">
                     <td class="table-cell"><img src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png" class="rounded-circle table-image" alt=""></td>
                     <td class="table-cell">{{ persona.nombre }} {{ persona.apellidos }}</td>
@@ -70,8 +70,8 @@
             </table>
             </div>
 
-        {% endfor %}
         </div>
+     {% endfor %}
         <script>
             console.log('Set datatable')
 
