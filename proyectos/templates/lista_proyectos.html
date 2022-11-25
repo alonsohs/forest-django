@@ -18,59 +18,43 @@
             height: 3rem;
             margin-left: 1rem;
         }
+
+        .card .image {
+            object-fit: cover;
+            height: 100%
+        }
     </style>
 {% endblock%}
 
 {% block contenido %}
     <div class="d-flex justify-content-between mb-4">
         <h1 class="h2">Proyectos</h1>
-        <a href="{% url 'crear_arbol' %}">
+        <a href="{% url 'crear_proyecto' %}">
             <button class="btn-success">Agregar nuevo</button>
         </a>
     </div>
 
     <main>
      {% for proyecto in proyectos %}
-        <div class="card p-4">
+        <a href="{% url 'detalle_proyecto' proyecto.id %}">
+            <div class="card ">
+            <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="{{ proyecto.urlImagen }}" class="img-fluid image rounded-start rou" alt="reforestacion">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title text-success">{{ proyecto.nombre }}</h5>
+                    <p class="card-text"><strong>Estatus: </strong>{{ proyecto.status }}</p>
+                    <p class="card-text"><strong>Lider: </strong>{{ proyecto.lider }}</p>
+                    <p class="card-text"><strong>Ubicación: </strong>{{ proyecto.ubicacion }}</p>
 
-             <div class="d-flex justify-content-between mb-4">
-                <h1 class="h4 text-success">{{ equipo.nombre }}</h1>
-                <a href="{% url 'crear_arbol' %}">
-                    <button class="btn-success">Agregar persona</button>
-                </a>
-            </div>
-
-            <div class="table-responsive ">
-            <table class="table table-bordered" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                    <th class="image-head"></th>
-                    <th>Nombre</th>
-                    <th>Rol</th>
-                    <th>Correo</th>
-                    <th>Telefono</th>
-                    <th>Direccion</th>
-                </tr>
-              </thead>
-                <tbody>
-                {% for persona in personas %}
-                <tr class="table-row">
-                    <td class="table-cell"><img src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png" class="rounded-circle table-image" alt=""></td>
-                    <td class="table-cell">{{ persona.nombre }} {{ persona.apellidos }}</td>
-                    <td class="table-cell">{{ persona.rol }}</td>
-                    <td class="table-cell">{{ persona.correo }}</td>
-                    <td class="table-cell">{{ persona.telefono }}</td>
-                    <td class="table-cell">{{ persona.direccion }}</td>
-
-                </tr>
-                {% endfor %}
-
-
-                </tbody>
-            </table>
-            </div>
-
+                    <p class="card-text"><small class="text-muted">Ultima actualización recientemente</small></p>
+                  </div>
+                </div>
+              </div>
         </div>
+        </a>
      {% endfor %}
 
     </main>

@@ -14,4 +14,6 @@ class Arbol(models.Model):
     precio = models.FloatField()
     metrosCuadrados = models.FloatField()
 
+    def __str__(self):
+        return '%s' % (self.nombre)
 

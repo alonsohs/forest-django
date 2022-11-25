@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo %}
+    <title>Proyecto | {{ proyecto.nombre }}</title>
+    <style>
+
+        .image-head {
+            width: 6rem;
+        }
+
+        .table-row .table-cell {
+            vertical-align: middle;
+        }
+
+        .table-image {
+            width: 3rem;
+            height: 3rem;
+            margin-left: 1rem;
+        }
+
+        .card .image {
+            object-fit: cover;
+            height: 100%
+        }
+
+        .card {
+            height: 100%;
+        }
+    </style>
+{% endblock%}
+
+{% block contenido %}
+    <div class="d-flex justify-content-between mb-4">
+        <h1 class="h2">Proyecto <span class="text-success">{{ proyecto.nombre }}</span></h1>
+
+    </div>
+
+    <main>
+        <div class="row g-0 mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ proyecto.urlImagen }}" class="img-fluid image rounded-start rou" alt="reforestacion">
+                </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title text-success">{{ proyecto.nombre }}</h5>
+                    <p class="card-text"><strong>Estatus: </strong>{{ proyecto.status }}</p>
+                    <p class="card-text"><strong>Lider: </strong>{{ proyecto.lider }}</p>
+                    <p class="card-text"><strong>Ubicación: </strong>{{ proyecto.ubicacion }}</p>
+                    <div class="row">
+                        <p class="card-text col-6"><strong>Fecha Inicio: </strong>{{ proyecto.fecha_inicio }}</p>
+                        <p class="card-text col-6"><strong>Fecha Fin: </strong>{{ proyecto.fecha_limite }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="card-text col-6"><strong>Presupuesto total: </strong>$ {{ proyecto.presupuesto }}</p>
+                        <p class="card-text col-6"><strong>Unidades de arboles: </strong>{{ proyecto.presupuesto_arboles }}</p>
+                    </div>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="row g-0 mb-4">
+            <div class="col-md-8">
+                 <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title text-success">Estadísticas</h5>
+
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Progreso
+                        </div>
+                        <div class="row no-gutters align-items-center mb-4">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ estadisticas.progreso }}%</div>
+                            </div>
+                            <div class="col">
+                                <div class="progress progress-sm mr-2">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: {{estadisticas.progreso}}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Presupuesto
+                        </div>
+                        <div class="row no-gutters align-items-center mb-4">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">66%</div>
+                            </div>
+                            <div class="col">
+                                <div class="progress progress-sm mr-2">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 66%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <p class="card-text"><strong>Tiempo restante: </strong>{{ estadisticas.dias }} días</p>
+                    <p class="card-text"><strong>Meta de arboles plantados: </strong>{{ proyecto.arboles_meta }}</p>
+                    <p class="card-text"><strong>Cantidad de arboles plantados: </strong>{{ proyecto.arboles_platados }}</p>
+                    <p class="card-text"><strong>Gastos totales: </strong>{{ estadisticas.gastos }}</p>
+
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                  <!-- Pie Chart -->
+                        <div >
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">GASTOS POR CATEGORÍA</h6>
+
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myPieChart" width="318" height="245" style="display: block; width: 318px; height: 245px;" class="chartjs-render-monitor"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Árboles
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Personas
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Material
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+              </div>
+            </div>
+          </div>
+
+        <div class="row g-0 mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d35829.761988844475!2d-98.02706341842902!3d19.27628569531377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2smx!4v1669348999761!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title text-success">Área de reforestación</h5>
+                    <p class="card-text"><strong>Ubicación: </strong>{{ proyecto.ubicacion }}</p>
+                    <div class="row">
+                        <p class="card-text col-6"><strong>Latitud: </strong>{{ proyecto.latitud }}</p>
+                        <p class="card-text col-6"><strong>Longitud: </strong>{{ proyecto.longitud }}</p>
+                    </div>
+                    <p class="card-text"><strong>Tipo de suelo: </strong>{{ proyecto.tipo_suelo }}</p>
+                    <p class="card-text"><strong>Tipo de clima: </strong>{{ proyecto.clima }}</p>
+                    <p class="card-text"><strong>Metros cuadrados disponibles: </strong>{{ proyecto.metros_cuadrados }}</p>
+
+                    <div>
+                        <h5 class="card-title text-success">Información del árbol</h5>
+                        <p class="card-text"><strong>Nombre: </strong>{{ proyecto.tipo_arbol.nombre }}</p>
+                        <div class="row">
+                            <p class="card-text col-6"><strong>Ecosistema: </strong>{{ proyecto.tipo_arbol.ecosistema }}</p>
+                            <p class="card-text col-6"><strong>Tamaño: </strong>{{ proyecto.tipo_arbol.altura }}</p>
+                        </div>
+                        <div class="row">
+                            <p class="card-text col-6"><strong>Precio Aproximado: </strong>{{ proyecto.tipo_arbol.precio }}</p>
+                            <p class="card-text col-6"><strong>m² requeridos por unidad: </strong>{{ proyecto.tipo_arbol.metrosCuadrados }}</p>
+                        </div>
+
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
+        <div  class="row g-0 mb-4">
+            <div class="card col-12 p-4">
+                <h5 class="card-title">Equipo asignado <span class="text-success">{{ proyecto.equipo }}</span></h5>
+                <div>
+                     <div class="table-responsive ">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                            <th class="image-head"></th>
+                            <th>Nombre</th>
+                            <th>Rol</th>
+                            <th>Correo</th>
+                            <th>Telefono</th>
+                            <th>Direccion</th>
+                        </tr>
+                      </thead>
+                        <tbody>
+                        {% for persona in equipo_persona %}
+                        <tr class="table-row">
+                            <td class="table-cell"><img src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png" class="rounded-circle table-image" alt=""></td>
+                            <td class="table-cell">{{ persona.nombre }} {{ persona.apellidos }}</td>
+                            <td class="table-cell">{{ persona.rol }}</td>
+                            <td class="table-cell">{{ persona.correo }}</td>
+                            <td class="table-cell">{{ persona.telefono }}</td>
+                            <td class="table-cell">{{ persona.direccion }}</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/chart-area-demo.js' %}"></script>
+    <script src="{% static 'js/chart-pie-demo.js' %}"></script>
+    </main>
+{% endblock%}

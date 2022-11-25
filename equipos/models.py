@@ -25,4 +25,8 @@ class Persona(models.Model):
     equipo = models.ForeignKey(Equipo, on_delete=models.SET_NULL, blank=True, null=True)
 
 
+    def __str__(self):
+        return '%s %s' % (self.nombre, self.apellidos)
+
+
 
