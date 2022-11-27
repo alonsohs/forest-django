@@ -37,7 +37,7 @@ def detalleProyecto(request, pk):
 
     estadisticas['dias'] = dias_restantes
 
-    if proyecto.arboles_meta is not 0:
+    if proyecto.arboles_meta != 0:
         estadisticas['progreso'] = (proyecto.arboles_platados * 100) / proyecto.arboles_meta
 
 

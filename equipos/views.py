@@ -18,7 +18,8 @@ def equipos(request):
         }
 
     for persona in personas:
-        equipos[persona.equipo.id]['personas'].append(persona)
+        if equipos[persona.equipo.id] != None:
+            equipos[persona.equipo.id]['personas'].append(persona)
 
     print(equipos)
     equipoCtx = []

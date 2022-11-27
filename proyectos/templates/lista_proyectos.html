@@ -36,8 +36,8 @@
 
     <main>
      {% for proyecto in proyectos %}
-        <a href="{% url 'detalle_proyecto' proyecto.id %}">
-            <div class="card ">
+        <a class="" href="{% url 'detalle_proyecto' proyecto.id %}">
+            <div class="card mb-4">
             <div class="row g-0">
                 <div class="col-md-4">
                   <img src="{{ proyecto.urlImagen }}" class="img-fluid image rounded-start rou" alt="reforestacion">
