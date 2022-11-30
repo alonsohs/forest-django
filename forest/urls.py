@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from home import views
+from generales.views import registro
 
 urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
-    # path('catalogos/',include('catalogos.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('registro/', registro, name='registro'),
     path('logout/', views.logoutSession, name="logout"),
     path('arboles/', include('arboles.urls')),
     path('equipos/', include('equipos.urls')),

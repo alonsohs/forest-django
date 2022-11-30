@@ -9,7 +9,7 @@ from datetime import date
 
 @login_required()
 def proyectos(request):
-    proyectos = Proyecto.objects.all()
+    proyectos = Proyecto.objects.filter(user=request.user)
     contexto = {
         'proyectos': proyectos,
     }
@@ -20,7 +20,9 @@ def crearProyecto(request):
     if request.method == 'POST':
         form = ProyectoForm(request.POST)
         if form.is_valid():
-            form.save()
+            proyecto = form.save(commit=False)
+            proyecto.user = request.user
+            proyecto.save()
             return redirect('lista_proyectos')
     else:
         form = ProyectoForm()

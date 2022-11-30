@@ -1,0 +1,22 @@
+{% extends "registration/base.html" %}
+{% block contenido %}
+    <div class="text-center d-flex justify-content-center">
+
+        <h1 class="h2 text-gray-900 mb-4">Forest</h1>
+
+    </div>
+    <form class="user" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success btn-user btn-block">
+            Registrarse
+        </button>
+    </form>
+    <hr>
+    <div class="text-center">
+<!--        <a class="small" href="forgot-password.html">¿Olvidaste la contraseña?</a>-->
+    </div>
+    <div class="text-center">
+        <a class="small" href="{% url 'home' %}">Iniciar sesión</a>
+    </div>
+{% endblock %}

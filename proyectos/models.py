@@ -1,9 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from arboles.models import Arbol
 from equipos.models import Persona, Equipo
 
 class Proyecto(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     nombre = models.CharField(max_length=50)
     urlImagen = models.CharField(max_length=120, default='https://www.bbva.com/wp-content/uploads/2021/11/reforestacio%CC%81n_plantar-arboles-sostenibilidad-cuidado-medioambiente-planeta-bosques--1024x629.jpg')
     avance = models.IntegerField(null=True)
@@ -12,7 +14,6 @@ class Proyecto(models.Model):
     presupuesto_arboles = models.IntegerField(null=True, default=0)
     presupuesto = models.FloatField()
     material_disponible = models.IntegerField(null=True)
-
     ubicacion = models.TextField()
     lider = models.ForeignKey(Persona, on_delete=models.SET_NULL, blank=True, null=True)
 
@@ -45,10 +46,8 @@ class Proyecto(models.Model):
     tipo_arbol = models.ForeignKey(Arbol,on_delete=models.SET_NULL, blank=True, null=True)
     latitud = models.FloatField(null=True)
     longitud = models.FloatField(null=True)
-
     arboles_meta = models.IntegerField(default=0)
     arboles_platados = models.IntegerField(default=0)
-
     equipo = models.ForeignKey(Equipo, on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):

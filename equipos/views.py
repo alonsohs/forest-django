@@ -7,8 +7,9 @@ from .models import Equipo, Persona
 
 @login_required()
 def equipos(request):
-    personas = Persona.objects.all()
-    equiposObject = Equipo.objects.all()
+
+    personas = Persona.objects.filter(user=request.user)
+    equiposObject = Equipo.objects.filter(user=request.user)
 
     equipos = {}
     for equipo in equiposObject:
@@ -21,7 +22,6 @@ def equipos(request):
         if equipos[persona.equipo.id] != None:
             equipos[persona.equipo.id]['personas'].append(persona)
 
-    print(equipos)
     equipoCtx = []
     for equipo in equipos:
         formatoEquipo = {
@@ -43,7 +43,9 @@ def crearEquipo(request):
     if request.method == 'POST':
         form = EquipoForm(request.POST)
         if form.is_valid():
-            form.save()
+            equipo = form.save(commit=False)
+            equipo.user = request.user
+            equipo.save()
             return redirect('equipos')
     else:
         form = EquipoForm()
@@ -55,7 +57,9 @@ def crearPersona(request, pk):
         form = PersonaForm(request.POST)
         print(form)
         if form.is_valid():
-            form.save()
+            persona = form.save(commit=False)
+            persona.user = request.user
+            persona.save()
             return redirect('equipos')
     else:
         form = PersonaForm(initial={'equipo': pk})
