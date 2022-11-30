@@ -18,6 +18,9 @@ from django.urls import path, include
 from home import views
 from generales.views import registro
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
@@ -27,4 +30,4 @@ urlpatterns = [
     path('arboles/', include('arboles.urls')),
     path('equipos/', include('equipos.urls')),
     path('proyectos/', include('proyectos.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
