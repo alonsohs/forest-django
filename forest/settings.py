@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*_1kqi_hf5qfdr2--$y+qns@c#r@xe3@vh6@pq9zhr3ret7%cs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ['forest-sznsg.ondigitalocean.app', 'localhost', '127.0.0.1']
 
 
 # Application definition
